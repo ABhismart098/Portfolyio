@@ -18,16 +18,27 @@ function Home() {
        const canvas = document.querySelector(".homeCanvas");
     const renderer = new THREE.WebGLRenderer({ canvas });
 
-    const geometry = new THREE.BoxGeometry(1, 1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({ color:0x00ff00 })
+    const moongeometry = new THREE.SphereGeometry(3, 64, 64);
+    const moonmaterial = new THREE.MeshStandardMaterial({ color:0xffffff })
+    const pointLight = new THREE.PointLight(0xffffff, 1)
+    pointLight.position.z=10;
 
-    const mesh = new THREE.Mesh(geometry, material)
-    scene.add(mesh);
-    camera.position.z=5;
-
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    const moon = new THREE.Mesh(moongeometry, moonmaterial)
+    scene.add(moon);
+    scene.add(pointLight);
+    
+    camera.position.z=10;
+    const animation = () => {
+      requestAnimationFrame(animation);
+      moon.rotation.z +=0.01;
+      
+      renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.render(scene, camera);
               
+
+    }
+
+    animation();
       },[])
 
 
