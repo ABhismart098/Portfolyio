@@ -6,6 +6,16 @@ import venusImage from "../../img/venus.jpg"
 import spaceImage from "../../img/space.jpg"
 import {Typography} from "@mui/material"
 import TimeLine from '../TimeLine/TimeLine'
+import {
+  SiReact,
+  SiJavascript,
+  SiMongodb,
+  SiNodedotjs,
+  SiExpress,
+  SiCss3,
+  SiHtml5,
+} from "react-icons/si";
+import YoutubeCard from '../YoutubeCard/YoutubeCard'
 
 
 
@@ -149,7 +159,28 @@ function Home() {
               </img>
             </div>
           </div>
+          <div className='cubeShadow'> </div>
+          <div className='homeSkillsBox'>
+          <SiHtml5 />
+          <SiCss3 />
+          <SiJavascript />
+          <SiMongodb />
+          <SiExpress />
+          <SiReact />
+          <SiNodedotjs />
+          
+             </div>
      </div>
+     <div className='homeYoutube'>
+      <Typography variant='h3'>YOUTUBE VIDEOS</Typography>
+      <div className='homeYoutubeWrapper'> 
+                <YoutubeCard/>
+               
+
+      
+      
+      </div>
+     </div> 
     </div>
 
   )
