@@ -6,6 +6,7 @@ import venusImage from "../../img/venus.jpg"
 import spaceImage from "../../img/space.jpg"
 import {Typography} from "@mui/material"
 import TimeLine from '../TimeLine/TimeLine'
+import Developer from '../../img/download.jpeg'
 import {
   SiReact,
   SiJavascript,
@@ -169,12 +170,28 @@ function Home() {
           <SiReact />
           <SiNodedotjs />
           
+          
              </div>
      </div>
      <div className='homeYoutube'>
       <Typography variant='h3'>YOUTUBE VIDEOS</Typography>
-      <div className='homeYoutubeWrapper'> 
-                <YoutubeCard/>
+      <div className='homeYoutubeWrapper'>
+      <YoutubeCard
+                        image={Developer}
+                        title="Sample_Video"
+                    />
+                    <YoutubeCard
+                        image={Developer}
+                        title="Sample_Video"
+                    />
+                    <YoutubeCard
+                        image={Developer}
+                        title="Sample_Video"
+                    />
+                    <YoutubeCard
+                        image={Developer}
+                        title="Sample_Video"
+                    />
                
 
       
