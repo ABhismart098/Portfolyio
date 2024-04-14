@@ -1,12 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./AdminPannel.css"
 import { Typography, Button } from '@mui/material'
 import {AiOutlineProject} from "react-icons/ai"
 import {FaYoutube}from 'react-icons/fa'
 import {MdTimeline} from "react-icons/md"
 import {Link} from "react-router-dom"
+import {useDispatch, useSelector} from "react-redux"
+import {logout} from "../../action/user"
+import { useAlert } from 'react-alert'
 
 const AdminPannel = () => {
+    const dispatch = useDispatch();
+    const alert = useAlert();
+    const {message, error} = useSelector((state)=> state.login)
+
     const [name, setName]= useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -20,7 +27,9 @@ const AdminPannel = () => {
     const submitHandler = (e)=>{
         e.preventDefault();
     }
-    const logoutHandler = (e)=>{}
+    const logoutHandler = (e)=>{
+        dispatch(logout());
+    }
 
 
     const handleAboutImage= (e)=>{
@@ -69,6 +78,7 @@ const AdminPannel = () => {
                 {
                 setskills( ...skills, {image6: Reader.result});
                 }
+
             
         }
         
@@ -76,6 +86,20 @@ const AdminPannel = () => {
     }
 
     }
+
+
+
+
+    useEffect(()=>{
+        if(error){
+         alert.error(error);
+         dispatch({ type: "CLEAR_ERROR", })
+        }if(message){
+         alert.success(message);
+         dispatch({type: "CLEAR_MESSAGE", })
+        }
+     
+       }, [alert,error,message, dispatch])
 
 
 
