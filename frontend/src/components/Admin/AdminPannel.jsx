@@ -257,7 +257,10 @@ const AdminPannel = () => {
              update
              </Button>
 
-             <Button 
+             
+
+          </form>
+          <Button 
              variant="contained"
              color="error"
              style= {{display:"block", margin:"4vmax auto"}}
@@ -265,8 +268,6 @@ const AdminPannel = () => {
              >
              LOGOUT
              </Button>
-
-          </form>
 
         </div>
     </div>
