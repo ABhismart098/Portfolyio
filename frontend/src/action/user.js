@@ -59,7 +59,7 @@ export const logout = () =>async(dispatch) =>{
         dispatch({
             type: "LOGOUT_REQUEST",
         })
-        const {data} = await axios.post("/api/v1/logout")
+        const {data} = await axios.get("/api/v1/logout")
 
         dispatch({
             type: "LOGOUT_SUCCESS",

@@ -8,44 +8,32 @@ import {Link} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 import {logout} from "../../action/user"
 import { useAlert } from 'react-alert'
-
 const AdminPannel = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
     const {message, error} = useSelector((state)=> state.login)
-
     const [name, setName]= useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [skills, setskills] = useState({});
     const [about, setAbout] = useState({});
-
-
-
-
-
-    const submitHandler = (e)=>{
+const submitHandler = (e)=>{
         e.preventDefault();
     }
     const logoutHandler = (e)=>{
         dispatch(logout());
     }
-
-
     const handleAboutImage= (e)=>{
         const file = e.target.files[0];
         const Reader = new FileReader();
         Reader.readAsDataURL(file);
-
         Reader.onload = ()=>{
             if(Reader.readyState === 2){
                 setAbout(...about, { avatar: Reader.avatar})
             
         }
         
-
     }
-
     }
     const handleImage= (e, value)=>{
         const file = e.target.files[0];
@@ -77,19 +65,10 @@ const AdminPannel = () => {
                 if(value === 6)
                 {
                 setskills( ...skills, {image6: Reader.result});
-                }
-
-            
+                }            
         }
-        
-
     }
-
     }
-
-
-
-
     useEffect(()=>{
         if(error){
          alert.error(error);
@@ -100,12 +79,6 @@ const AdminPannel = () => {
         }
      
        }, [alert,error,message, dispatch])
-
-
-
-
-
-
   return (
     <div className='adminPannel'>
         <div className='adminPannelCointainer'>
@@ -122,9 +95,7 @@ const AdminPannel = () => {
                    <p>N</p>
                    <p>E</p>
                    <p>L</p>
-
           </Typography>
-
           <form onSubmit={submitHandler}>
             <input
             type='text'
@@ -140,7 +111,6 @@ const AdminPannel = () => {
             onChange={(e)=>setEmail(e.target.value)}
             className='adminPannelInput'
             />
-
 <input
             type='password'
             placeholder='Password'
@@ -148,8 +118,6 @@ const AdminPannel = () => {
             onChange={(e)=>setPassword(e.target.value)}
             className='adminPannelInput'
             />
-
-
             <div className='adminPannelSkills'> 
             <div>
             <Typography>Skills 1</Typography>
@@ -160,7 +128,6 @@ const AdminPannel = () => {
             accept='image/*'
             />
             </div>
-
             <div>
             <Typography>Skills 2</Typography>
             <input
@@ -217,14 +184,12 @@ const AdminPannel = () => {
                     onChange={(e)=> setAbout({...about,name: e.target.value})}
                     className='adminPannelInput'
                     />
-
 <input
                     type='text'
                     placeholder='Title'
                     value={about.title}
                     onChange={(e)=> setAbout({...about,title: e.target.value})}
-                    className='adminPannelInput'
-                    
+                    className='adminPannelInput'                    
                     />
                     <input
                     type='text'
@@ -240,7 +205,6 @@ const AdminPannel = () => {
                     onChange={(e)=> setAbout({...about,description: e.target.value})}
                     className='adminPannelInput'
                     />
-
 <input
                     type='text'
                     placeholder='Quate'
@@ -248,7 +212,6 @@ const AdminPannel = () => {
                     onChange={(e)=> setAbout({...about,quate: e.target.value})}
                     className='adminPannelInput'
                     />
-
                     <input
                     type='file'
                     onChange= {handleAboutImage}
@@ -256,33 +219,22 @@ const AdminPannel = () => {
                     className='adminPannelFileUpload'
                     accept = "image/*"
                     />
-
-
-
                 </fieldset>
             </div>
-
             <Link to='/admin/timeline'>
                 TIMELINE <MdTimeline />
-
             </Link>
-
             <Link to='/admin/youtube'>
                 YOUTUBE <FaYoutube/>
                 
             </Link>
-
             <Link to='/admin/project'>
                PROJECT< AiOutlineProject/>
                 
             </Link>
-
             <Button  type='submit' variants= "contained">
              update
-             </Button>
-
-             
-
+             </Button>             
           </form>
           <Button 
              variant="contained"
@@ -292,11 +244,8 @@ const AdminPannel = () => {
              >
              LOGOUT
              </Button>
-
         </div>
     </div>
   )
 }
-
-
 export default AdminPannel

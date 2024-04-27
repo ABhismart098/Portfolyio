@@ -11,6 +11,9 @@ import { useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux"
 import { getUser, loaduser } from "./action/user";
 import AdminPannel from "./components/Admin/AdminPannel";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
 
@@ -34,7 +37,9 @@ useEffect(() =>{
       <Route path="/projects" element={<Projects/>} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/Login" element={isAuthenticated ?<AdminPannel/>:<Login/>} />
+      
 </Routes>
+<ToastContainer />
      <Footer />
       </>
     )}
