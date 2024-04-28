@@ -29,74 +29,81 @@ export const userReducer = createReducer({initialState}, {
 
 
 
-export const loginReducer = createReducer({initialState}, {
-    "LOGIN_REQUEST": (state) =>{
-        state.loading = true;
-        state.isAuthenticated = false;
+export const loginReducer = createReducer(initialState, {
+    "LOGIN_REQUEST": (state) => ({
+        ...state,
+        loading: true,
+        isAuthenticated: false,
+        error: null // Reset error when login request is made
+    }),
 
-    },
+    "LOGIN_SUCCESS": (state, action) => ({
+        ...state,
+        loading: false,
+        isAuthenticated: true,
+        message: action.payload,
+        error: null // Reset error when login is successful
+    }),
 
-    "LOGIN_SUCCESS": (state, action) =>{
-        state.loading = false;
-        state.isAuthenticated = true;
-        state.message = action.payload;
-    },
+    "LOGIN_FAILURE": (state, action) => ({
+        ...state,
+        loading: false,
+        isAuthenticated: false,
+        error: action.payload,
+        message: null // Reset message when login fails
+    }),
 
-    "LOGIN_FAILURE": (state,action) =>{
+    "LOAD_USER_REQUEST": (state) => ({
+        ...state,
+        loading: true,
+        isAuthenticated: false,
+        error: null // Reset error when loading user request is made
+    }),
 
-        state.loading = false;
-        state.isAuthenticated = false;
-        state.error = action.payload;
-    },
-    "LOAD_USER_REQUEST": (state) =>{
-        state.loading = true;
-        state.isAuthenticated = false;
+    "LOAD_USER_SUCCESS": (state, action) => ({
+        ...state,
+        loading: false,
+        isAuthenticated: true,
+        user: action.payload,
+        error: null // Reset error when loading user is successful
+    }),
 
-    },
+    "LOAD_USER_FAILURE": (state, action) => ({
+        ...state,
+        loading: false,
+        isAuthenticated: false,
+        error: action.payload,
+        user: null // Reset user when loading user fails
+    }),
 
-    "LOAD_USER_SUCCESS": (state, action) =>{
-        state.loading = false;
-        state.isAuthenticated = true;
-        state.user = action.payload;
-    },
+    "LOGOUT_REQUEST": (state) => ({
+        ...state,
+        loading: true
+    }),
 
-    "LOAD_USER_FAILURE": (state,action) =>{
+    "LOGOUT_SUCCESS": (state, action) => ({
+        ...state,
+        loading: false,
+        isAuthenticated: false,
+        user: null,
+        message: action.payload,
+        error: null // Reset error when logout is successful
+    }),
 
-        state.loading = false;
-        state.isAuthenticated = false;
-        state.error = action.payload;
-    },
+    "LOGOUT_FAILURE": (state, action) => ({
+        ...state,
+        loading: false,
+        isAuthenticated: true,
+        error: action.payload
+    }),
 
+    "CLEAR_ERRORS": (state) => ({
+        ...state,
+        error: null
+    }),
 
-
-
-    "LOGOUT_REQUEST": (state) =>{
-        state.loading = true;
-       
-
-    },
-
-    "LOGOUT_SUCCESS": (state, action) =>{
-        state.loading = false;
-        state.isAuthenticated = false;
-        state.user = null;
-        state.message = action.payload;
-    },
-
-    "LOGOUT_FAILURE": (state,action) =>{
-
-        state.loading = false;
-        state.isAuthenticated = true;
-        state.error = action.payload;
-    },
-    "CLEAR_ERRORS": (state) =>{
-        state.error = null;
-       
-
-    },
-    "CLEAR_MESSAGE": (state) =>{
-        state.message = null;
-       
-
-    },
-})
+    "CLEAR_MESSAGE": (state) => ({
+        ...state,
+        message: null
+    })
+});
