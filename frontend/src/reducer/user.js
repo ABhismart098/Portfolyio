@@ -107,3 +107,26 @@ export const loginReducer = createReducer(initialState, {
         message: null
     })
 });
+
+
+
+export const updateReducer = createReducer({}, {
+    "UPDATE_USER_REQUEST": (state) =>{
+        state.loading = true;
+    },
+
+    "UPDATE_USER_SUCCESS": (state, action) =>{
+        state.loading = false;
+        state.message = action.payload;
+    },
+    "UPDATE_USER_FAILURE": (state,action) =>{
+
+        state.loading = false;
+        state.error = action.payload;
+    },
+    "CLEAR_ERRORS": (state) =>{
+        state.error = null;
+    },
+})
+
+

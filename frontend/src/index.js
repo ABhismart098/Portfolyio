@@ -11,14 +11,14 @@ const options = {
   timeout: 5000,
   transition: transitions.SCALE
 };
-
-ReactDOM.render(
-  <React.StrictMode>
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  
     <Provider store={store}>
       <AlertProvider template={AlertTemplate} {...options}>
         <App />
       </AlertProvider>
-    </Provider>
-  </React.StrictMode>,
+    </Provider>,
+  
   document.getElementById('root')
 );

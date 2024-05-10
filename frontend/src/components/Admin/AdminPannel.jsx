@@ -6,12 +6,14 @@ import {FaYoutube}from 'react-icons/fa'
 import {MdTimeline} from "react-icons/md"
 import {Link} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
-import {logout} from "../../action/user"
+import {logout, updateUser} from "../../action/user"
 import { useAlert } from 'react-alert'
+
 const AdminPannel = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
-    const {message, error} = useSelector((state)=> state.login)
+    const {message, error, loading} = useSelector((state)=> state.update);
+    const {message:loginMessage} = useSelector((state)=> state.login);
     const [name, setName]= useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -19,6 +21,7 @@ const AdminPannel = () => {
     const [about, setAbout] = useState({});
 const submitHandler = (e)=>{
         e.preventDefault();
+        dispatch(updateUser(name, email, password, about, skills))
     }
     const logoutHandler = (e)=>{
         dispatch(logout());
@@ -29,7 +32,7 @@ const submitHandler = (e)=>{
         Reader.readAsDataURL(file);
         Reader.onload = ()=>{
             if(Reader.readyState === 2){
-                setAbout(...about, { avatar: Reader.avatar})
+            setAbout({...about,  avatar: Reader.avatar})
             
         }
         
@@ -44,27 +47,27 @@ const submitHandler = (e)=>{
             if(Reader.readyState === 2){
                 if(value === 1)
                 {
-                setskills( ...skills, {image1: Reader.result});
+                setskills( {...skills, image1: Reader.result});
                 }
                 if(value === 2)
                 {
-                setskills( ...skills, {image2: Reader.result});
+                setskills( {...skills, image2: Reader.result});
                 }
                 if(value === 3)
                 {
-                setskills( ...skills, {image3: Reader.result});
+                setskills( {...skills, image3: Reader.result});
                 }
                 if(value === 4)
                 {
-                setskills( ...skills, {image4: Reader.result});
+                setskills( {...skills, image4: Reader.result});
                 }
                 if(value === 5)
                 {
-                setskills( ...skills, {image5: Reader.result});
+                setskills( {...skills, image5: Reader.result});
                 }
                 if(value === 6)
                 {
-                setskills( ...skills, {image6: Reader.result});
+                setskills( {...skills, image6: Reader.result});
                 }            
         }
     }
@@ -77,8 +80,12 @@ const submitHandler = (e)=>{
          alert.success(message);
          dispatch({type: "CLEAR_MESSAGE", })
         }
+        if(loginMessage){
+            alert.success(loginMessage);
+            dispatch({type: "CLEAR_MESSAGE", })
+           }
      
-       }, [alert,error,message, dispatch])
+       }, [alert,error,message, dispatch, loginMessage, loading])
   return (
     <div className='adminPannel'>
         <div className='adminPannelCointainer'>
@@ -232,7 +239,7 @@ const submitHandler = (e)=>{
                PROJECT< AiOutlineProject/>
                 
             </Link>
-            <Button  type='submit' variants= "contained">
+            <Button  type='submit' variants= "contained" disabled= {loading} >
              update
              </Button>             
           </form>
