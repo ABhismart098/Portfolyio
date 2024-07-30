@@ -17,9 +17,15 @@ const Footer = () => {
         <Typography>
           I am Abhishek Yadav, a dedicated Software Engineer based in Gurgaon City, IN. With a Bachelor's degree in Computer Science Engineering from Dronacharya College of Engineering, I have a solid foundation in building robust applications and solving complex problems. My passion lies in MERN stack and Java development, where I leverage technologies like React.js, Node.js, Express.js, MongoDB, MySQL, and Sequelize ORM to create innovative solutions.
         </Typography>
+        
         <Link to="/contact" className='footerContactBtn'>
           <Typography>Contact Us</Typography>
         </Link>
+        <div className="copyright">
+        
+        © 2024 My Portfolio. All rights reserved. Site developed and maintained by A-Z Solutions.
+        </div>
+        
       </div>
       <div>
         <Typography variant='h6'>Social Media</Typography>
@@ -35,6 +41,7 @@ const Footer = () => {
         <a href='https://www.linkedin.com/in/abhishek-yadav-a25471191/' target='blank'> {/* Corrected target attribute */}
           <BsLinkedin />
         </a>
+        
       </div>
     </div>
   );

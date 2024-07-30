@@ -77,3 +77,8 @@
 .footerContactBtn:hover p {
     color: white;
 }
+
+.copyright{
+    text-align: center;
+    color: white;
+}

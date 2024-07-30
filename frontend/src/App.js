@@ -36,7 +36,7 @@ useEffect(() =>{
       <Route path="/about" element={<About/>} />
       <Route path="/projects" element={<Projects/>} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/Login" element={isAuthenticated ?<AdminPannel/>:<Login/>} />
+      <Route path="/account" element={isAuthenticated ?<AdminPannel/>:<Login/>} />
       
 </Routes>
 <ToastContainer />

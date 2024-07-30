@@ -1,7 +1,7 @@
 import { User } from "../Model/datamodel.js";
 import jwt from "jsonwebtoken";
 import { sendMail } from "../middleware/sendMail.js";
-import cloudinary from "cloudinary";
+import {v2 as cloudinary} from "cloudinary";
 
 export const login = async (req, res) => {
   try {

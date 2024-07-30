@@ -58,7 +58,7 @@ const Projects = () => {
         ))}
       </div>
       <Typography variant = "h3" style={{ font: "100 1.2rem 'Ubuntu Mono'"}} >
-      All the projects here are prepared by abhisheky20 <FaRegSmileWink />
+      All the projects here are prepared by A-Z Solutions <FaRegSmileWink />
 
       </Typography>
     </div>

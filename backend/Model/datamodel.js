@@ -23,7 +23,7 @@ const userSchema =  mongoose.Schema({
 
     }],
 
-    skills:[{
+    skills:{
         image1:{
             public_id: String,
             url: String,
@@ -54,7 +54,7 @@ const userSchema =  mongoose.Schema({
             url: String,
             
         }
-    }],
+    },
 
     youtube:[
         {
