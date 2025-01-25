@@ -1,24 +1,28 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "This backend basically degin a node.js and mongoDB",
+  "description": "This backend is built using Node.js and MongoDB.",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "nodemon index.js",
-    "dev": "nodemon backend/index.js"
+    "dev": "nodemon index.js",
+    "build": "your-build-command"
   },
-  "author": "Akyadav",
+  "author": "Abhishek Yadav",
   "license": "ISC",
   "dependencies": {
+    "backend": "file:",
     "bcrypt": "^5.1.1",
-    "cloudinary": "^2.3.1",
+    "cloudinary": "^2.4.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
-    "express": "^4.19.1",
+    "express": "^4.21.0",
     "express-validator": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.2.3",
+    "mongoose": "^8.9.5",
+    "multer": "^1.4.5-lts.1",
+    "multer-storage-cloudinary": "^4.0.0",
     "nodemailer": "^6.9.13"
   }
 }

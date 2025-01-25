@@ -2,6 +2,20 @@ import { User } from "../Model/datamodel.js";
 import jwt from "jsonwebtoken";
 import { sendMail } from "../middleware/sendMail.js";
 import {v2 as cloudinary} from "cloudinary";
+import multer from "multer";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+
+
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "portfolio",
+    allowedFormats: ["jpg", "png", "jpeg"],
+  },
+});
+
+export const upload = multer({ storage });
+
 
 export const login = async (req, res) => {
   try {
@@ -110,9 +124,11 @@ export const contact = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   try {
+    console.log("Updating user")
     const user = await User.findById(req.user._id);
 
-    const { name, email, password, skills, about } = req.body;
+    const { name, email, password, skills, about,avatar } = req.body;
+    console.log(req.body);
 
     if (name) {
       user.name = name;
@@ -126,11 +142,13 @@ export const updateUser = async (req, res) => {
     }
 
     if (skills) {
+      console.log("skills: " + skills)
       if (skills.image1) {
-         await cloudinary.v2.uploader.destroy(user.skills.image1.public_id);
+        const res= 
+        await cloudinary.v2.uploader.destroy(user.skills.image1.public_id);
         const myCloud = await cloudinary.v2.uploader.upload(skills.image1, {
           folder: "portfolio",
-        });
+        });console.log(res);
 
         user.skills.image1 = {
           public_id: myCloud.public_id,
@@ -139,7 +157,7 @@ export const updateUser = async (req, res) => {
       }
 
       if (skills.image2) {
-         await cloudinary.v2.uploader.destroy(user.skills.image2.public_id);
+        await cloudinary.v2.uploader.destroy(user.skills.image2.public_id);
         const myCloud = await cloudinary.v2.uploader.upload(skills.image2, {
           folder: "portfolio",
         });
@@ -151,7 +169,7 @@ export const updateUser = async (req, res) => {
       }
 
       if (skills.image3) {
-         await cloudinary.v2.uploader.destroy(user.skills.image3.public_id);
+        await cloudinary.v2.uploader.destroy(user.skills.image3.public_id);
         const myCloud = await cloudinary.v2.uploader.upload(skills.image3, {
           folder: "portfolio",
         });
@@ -163,7 +181,7 @@ export const updateUser = async (req, res) => {
       }
 
       if (skills.image4) {
-         await cloudinary.v2.uploader.destroy(user.skills.image4.public_id);
+        await cloudinary.v2.uploader.destroy(user.skills.image4.public_id);
         const myCloud = await cloudinary.v2.uploader.upload(skills.image4, {
           folder: "portfolio",
         });
@@ -175,7 +193,7 @@ export const updateUser = async (req, res) => {
       }
 
       if (skills.image5) {
-         await cloudinary.v2.uploader.destroy(user.skills.image5.public_id);
+        await cloudinary.v2.uploader.destroy(user.skills.image5.public_id);
         const myCloud = await cloudinary.v2.uploader.upload(skills.image5, {
           folder: "portfolio",
         });
@@ -187,7 +205,7 @@ export const updateUser = async (req, res) => {
       }
 
       if (skills.image6) {
-         await cloudinary.v2.uploader.destroy(user.skills.image6.public_id);
+        await cloudinary.v2.uploader.destroy(user.skills.image6.public_id);
         const myCloud = await cloudinary.v2.uploader.upload(skills.image6, {
           folder: "portfolio",
         });
@@ -218,7 +236,8 @@ export const updateUser = async (req, res) => {
       }
 
       if (about.avatar) {
-         await cloudinary.v2.uploader.destroy(user.about.avatar.public_id);
+        console.log("photo_url", user.photo);
+        await cloudinary.v2.uploader.destroy(user.about.avatar.public_id);
 
         const myCloud = await cloudinary.v2.uploader.upload(about.avatar, {
           folder: "portfolio",
@@ -244,7 +263,6 @@ export const updateUser = async (req, res) => {
     });
   }
 };
-
 export const addTimeline = async (req, res) => {
     try {
       const { title, description, date } = req.body;
