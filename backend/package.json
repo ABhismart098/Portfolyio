@@ -1,6 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
+  "license": "ISC",
   "description": "This backend is built using Node.js and MongoDB.",
   "main": "index.js",
   "type": "module",
@@ -10,7 +11,6 @@
     "build": "echo 'No build step required'"
   },
   "author": "Abhishek Yadav",
-  "license": "ISC",
   "dependencies": {
     "argon2": "^0.41.1",
     "backend": "file:",
