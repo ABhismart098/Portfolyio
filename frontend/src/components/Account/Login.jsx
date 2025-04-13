@@ -28,6 +28,7 @@
     }if(message){
      alert.success(message);
      dispatch({type: "CLEAR_MESSAGE", })
+     
     }
 
    }, [alert,error,message, dispatch])

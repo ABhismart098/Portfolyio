@@ -5,7 +5,8 @@ export const getUser = () =>async(dispatch) =>{
         dispatch({
             type: "GET_USER_REQUEST",
         })
-        const {data} = await axios.get("/api/v1/user/")
+        const {data} = await axios.get("api/v1/user")
+        console.log(data)
 
         dispatch({
             type: "GET_USER_SUCCESS",
@@ -29,7 +30,7 @@ export const login = (email, password) =>async(dispatch) =>{
         dispatch({
             type: "LOGIN_REQUEST",
         })
-        const {data} = await axios.post("/api/v1/login",{
+        const {data} = await axios.post("api/v1/login",{
             email,
             password,
         },{
