@@ -129,7 +129,7 @@ export const updateUser = async (req, res) => {
     console.log("Updating user")
     const user = await User.findById(req.user._id);
 
-    const { name, email, password, skills, about,avatar } = req.body;
+    const { name, email, password, skills, about, avatar } = req.body;
     console.log(req.body);
 
     if (name) {
