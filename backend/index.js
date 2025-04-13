@@ -7,6 +7,10 @@ dotenv.config({ path: "../config/config.env" });
 const port = process.env.PORT || 4000;
 
 app.listen(port, (err) => {
+    app.get("/", (req, res) => {
+        res.send("API is running...");
+    });
+    // Check if the server started successfully
     if (err) {
         console.error("Error starting server:", err);
     } else {
