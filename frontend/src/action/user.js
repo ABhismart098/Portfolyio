@@ -25,34 +25,37 @@ export const getUser = () =>async(dispatch) =>{
 
 
 
-export const login = (email, password) =>async(dispatch) =>{
-    try{
-        dispatch({
-            type: "LOGIN_REQUEST",
-        })
-        const {data} = await axios.post("api/v1/login",{
-            email,
-            password,
-        },{
-            headers: {
-                "Content-Type": "application/json",
-            }
-        })
-
-        dispatch({
-            type: "LOGIN_SUCCESS",
-            payload: data.message,
-        })
-
-    }catch(error) {
-
-        dispatch({
-            type: "LOGIN_FAILURE",
-            payload: error.response.data.message
-        })
-
+export const login = (email, password) => async (dispatch) => {
+    try {
+      dispatch({ type: "LOGIN_REQUEST" });
+  
+      const { data } = await axios.post(
+        `/api/v1/login`,
+        { email, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true, // needed if backend sets cookies
+        }
+      );
+  
+      dispatch({
+        type: "LOGIN_SUCCESS",
+        payload: data.message,
+      });
+    } catch (error) {
+      console.error("Login error:", error);
+  
+      dispatch({
+        type: "LOGIN_FAILURE",
+        payload:
+          error.response?.data?.message ||
+          error.message ||
+          "Something went wrong",
+      });
     }
-}
+  };
 
 
 export const logout = () =>async(dispatch) =>{
