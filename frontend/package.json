@@ -65,5 +65,5 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   },
-  "proxy": "https://portnpmfolyio-10.onrender.com/"
+  "proxy": "https://portnpmfolyio-10.onrender.com"
 }
